@@ -33,7 +33,7 @@ const panel: React.CSSProperties = { border: "1px solid rgba(124,77,204,0.16)", 
 
 function Bullets({ items }: { items: string[] }) {
   return (
-    <div style={{ display: "grid", gap: 11, marginTop: "auto", paddingTop: 8 }}>
+    <div style={{ display: "grid", gap: 11, paddingTop: 8 }}>
       {items.map((b) => (
         <div key={b} style={{ display: "flex", gap: 11, alignItems: "flex-start", fontSize: 15, color: c.textSoft, lineHeight: 1.5 }}>
           <span style={{ width: 10, height: 1, background: c.violet, marginTop: 11, flexShrink: 0, display: "block" }} />
@@ -123,6 +123,7 @@ export default function Systems() {
                   </div>
                 ))}
               </div>
+              <Bullets items={s.outbound.bullets} />
             </div>
           </Reveal>
         </div>
