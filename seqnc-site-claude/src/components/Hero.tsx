@@ -42,7 +42,7 @@ export default function Hero() {
           position: "relative",
           maxWidth: 1400,
           margin: "0 auto",
-          padding: "clamp(64px,8vw,116px) 32px clamp(56px,6vw,84px)",
+          padding: "clamp(36px,4vw,60px) 32px clamp(56px,6vw,84px)",
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit,minmax(min(430px,100%),1fr))",
           gap: "clamp(40px,5vw,72px)",
