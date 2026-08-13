@@ -92,6 +92,11 @@ export const fr: Translations = {
         { day: "Jour 30", msg: "Offre de retour", badge: "Planifié" },
         { day: "Jour 90", msg: "Suivi saisonnier", badge: "En attente" },
       ],
+      bullets: [
+        "Des avis demandés pour chaque contrat, pas seulement ceux dont vous vous souvenez",
+        "Vos anciens clients ont de vos nouvelles sans campagne à rédiger",
+        "Du travail récurrent qui ne dépend plus de la chance",
+      ],
     },
   },
   work: {

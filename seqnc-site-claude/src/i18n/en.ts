@@ -90,6 +90,11 @@ export const en = {
         { day: "Day 30", msg: "Come-back offer", badge: "Scheduled" },
         { day: "Day 90", msg: "Seasonal check-in", badge: "Queued" },
       ],
+      bullets: [
+        "Reviews asked for every job, not the ones you remember",
+        "Past clients hear from you without a campaign to write",
+        "Repeat work that used to depend on luck",
+      ],
     },
   },
   work: {
