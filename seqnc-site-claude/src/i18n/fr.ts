@@ -97,7 +97,7 @@ export const fr: Translations = {
   work: {
     label: "Étude de cas",
     client: "Divos Detailing",
-    meta: "Esthétique automobile · Montréal",
+    meta: "Esthétique Automobile · Houston",
     link: "Voir le système de réservation en ligne",
     liveUrl: "https://divosdetailing.com/book-now",
     beforeLabel: "Avant",

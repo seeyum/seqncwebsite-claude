@@ -95,7 +95,7 @@ export const en = {
   work: {
     label: "Case study",
     client: "Divos Detailing",
-    meta: "Auto detailing · Montreal",
+    meta: "Auto Detailing · Houston",
     link: "See the live booking flow",
     liveUrl: "https://divosdetailing.com/book-now",
     beforeLabel: "Before",
