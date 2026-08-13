@@ -12,7 +12,12 @@ export default function CaseStudy() {
         <Reveal style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(280px,100%),1fr))", gap: "clamp(36px,5vw,64px)", alignItems: "start" }}>
           <div>
             <div style={label}>{w.label}</div>
-            <h2 style={{ fontFamily: display, fontSize: "clamp(28px,3vw,38px)", lineHeight: 1.06, letterSpacing: "-0.03em", fontWeight: 700, margin: "0 0 10px" }}>{w.client}</h2>
+            <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 10 }}>
+              <div style={{ width: 62, height: 62, flexShrink: 0, borderRadius: 12, border: "1px solid rgba(124,77,204,0.28)", background: "#000", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                <img src="/divos-logo.jpg" alt="Divos Detailing logo" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
+              </div>
+              <h2 style={{ fontFamily: display, fontSize: "clamp(28px,3vw,38px)", lineHeight: 1.06, letterSpacing: "-0.03em", fontWeight: 700, margin: 0 }}>{w.client}</h2>
+            </div>
             <div style={{ fontSize: 14, color: c.faint, marginBottom: 22 }}>{w.meta}</div>
             <a href={w.liveUrl} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: mono, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: c.violetLight }}>
               {w.link}

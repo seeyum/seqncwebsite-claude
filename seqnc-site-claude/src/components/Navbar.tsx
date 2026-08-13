@@ -71,7 +71,7 @@ export default function Navbar({ compact = false }: { compact?: boolean }) {
           gap: 24,
         }}
       >
-        <Link to="/" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
+        <Link to="/" aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })} style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
           <img src={logo} alt="Seqnc Automations" style={{ height: compact ? 30 : 34, width: "auto", display: "block" }} />
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: "clamp(14px,2vw,30px)", justifyContent: "flex-end" }}>
