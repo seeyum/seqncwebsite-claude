@@ -24,6 +24,7 @@ export default function Hero() {
       }}
     >
       <div
+        data-orb="1"
         style={{
           position: "absolute",
           top: -160,

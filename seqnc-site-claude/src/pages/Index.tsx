@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import WhoStrip from "../components/WhoStrip";
 import Problem from "../components/Problem";
 import Systems from "../components/Systems";
+import Demos from "../components/Demos";
 import CaseStudy from "../components/CaseStudy";
 import Process from "../components/Process";
 import Pricing from "../components/Pricing";
@@ -29,6 +30,7 @@ export default function Index() {
       <Problem />
       <Systems />
       <CaseStudy />
+      <Demos />
       <Process />
       <Pricing />
       <Faq />

@@ -23,4 +23,18 @@ a:hover { color: #C9AEF5; }
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  [data-mock="in"] { opacity: 1 !important; transform: none !important; }
+  [data-mock="sel"] { border-color: rgba(124,77,204,0.55) !important; background: rgba(124,77,204,0.14) !important; }
+  [data-mock="bar"] { width: 100% !important; }
+}
+
+@keyframes seqnc-in-1 { 0%, 3% { opacity: 0; transform: translateY(7px) } 9%, 92% { opacity: 1; transform: none } 100% { opacity: 0; transform: translateY(-4px) } }
+@keyframes seqnc-in-2 { 0%, 20% { opacity: 0; transform: translateY(7px) } 26%, 92% { opacity: 1; transform: none } 100% { opacity: 0; transform: translateY(-4px) } }
+@keyframes seqnc-in-3 { 0%, 37% { opacity: 0; transform: translateY(7px) } 43%, 92% { opacity: 1; transform: none } 100% { opacity: 0; transform: translateY(-4px) } }
+@keyframes seqnc-in-4 { 0%, 54% { opacity: 0; transform: translateY(7px) } 60%, 92% { opacity: 1; transform: none } 100% { opacity: 0; transform: translateY(-4px) } }
+@keyframes seqnc-sel-1 { 0%, 3% { border-color: rgba(124,77,204,0.2); background: #150F27 } 9%, 92% { border-color: rgba(124,77,204,0.55); background: rgba(124,77,204,0.14) } 100% { border-color: rgba(124,77,204,0.2); background: #150F27 } }
+@keyframes seqnc-sel-2 { 0%, 20% { border-color: rgba(124,77,204,0.2); background: #150F27 } 26%, 92% { border-color: rgba(124,77,204,0.55); background: rgba(124,77,204,0.14) } 100% { border-color: rgba(124,77,204,0.2); background: #150F27 } }
+@keyframes seqnc-fill { 0% { width: 4% } 9% { width: 28% } 26% { width: 52% } 43% { width: 76% } 60%, 100% { width: 100% } }
+@media (max-width: 820px) {
+  [data-orb] { display: none !important; }
 }

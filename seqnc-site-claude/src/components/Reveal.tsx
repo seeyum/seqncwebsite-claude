@@ -13,24 +13,25 @@ export default function Reveal({ children, style, delay = 0, fade = false, rail,
       el.style.transition = reduce
         ? "opacity 200ms linear"
         : "opacity 700ms cubic-bezier(0.2,0.7,0.2,1), transform 700ms cubic-bezier(0.2,0.7,0.2,1)";
-      el.style.transitionDelay = delay + "ms";
+      el.style.transitionDelay = (narrow ? Math.round(delay * 0.4) : delay) + "ms";
       el.style.opacity = "1";
       el.style.transform = "translateY(0)";
       setShown(true);
     };
+    const narrow = window.matchMedia && window.matchMedia("(max-width: 820px)").matches;
     if (!("IntersectionObserver" in window)) { show(); return; }
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting || e.boundingClientRect.bottom < 0) { show(); io.unobserve(e.target); }
       });
-    }, { rootMargin: "-8% 0px -12% 0px", threshold: 0.05 });
+    }, narrow ? { rootMargin: "0px 0px 18% 0px", threshold: 0 } : { rootMargin: "-8% 0px -12% 0px", threshold: 0.05 });
     io.observe(el);
     if (el.getBoundingClientRect().top < window.innerHeight * 0.92) show();
     return () => io.disconnect();
   }, [delay]);
 
   return (
-    <div ref={ref} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} style={{ opacity: 0, transform: fade ? "none" : "translateY(26px)", ...style }}>
+    <div ref={ref} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} data-reveal="1" style={{ opacity: 0, transform: fade ? "none" : "translateY(26px)", ...style }}>
       {rail && (
         <span
           aria-hidden="true"
