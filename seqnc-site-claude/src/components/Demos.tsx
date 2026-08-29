@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useLanguage } from "../i18n/LanguageContext";
 import { c, display, h2, label, mono } from "../theme";
 import Reveal from "./Reveal";
@@ -48,15 +47,15 @@ const cycleIn = (slot: number): React.CSSProperties => ({ opacity: 0, animation:
 function TryButton({ to, note }: { to: string; note: string }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", paddingTop: 4 }}>
-      <Link
-        to={to}
+      <a
+        href={to}
         style={{ display: "inline-flex", alignItems: "center", gap: 9, background: c.violet, color: "#fff", fontSize: 15, fontWeight: 600, padding: "13px 22px", borderRadius: 10, transition: "background 200ms ease" }}
         onMouseEnter={(e) => (e.currentTarget.style.background = "#8F5CE0")}
         onMouseLeave={(e) => (e.currentTarget.style.background = c.violet)}
       >
         {note}
         <span style={{ fontSize: 15, lineHeight: 1 }}>→</span>
-      </Link>
+      </a>
     </div>
   );
 }
@@ -115,10 +114,10 @@ export default function Demos() {
                 ))}
                 <div data-mock="in" style={{ ...cycleIn(3), display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, border: "1px solid rgba(126,154,245,0.45)", borderRadius: 9, background: "rgba(126,154,245,0.1)", padding: "12px 13px", marginTop: 3 }}>
                   <span style={{ fontSize: 13, color: c.text, fontWeight: 500 }}>{d.inbound.result}</span>
-                  <span style={{ fontFamily: display, fontSize: 15, fontWeight: 700, color: c.peri, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>$340</span>
+                  <span style={{ fontFamily: display, fontSize: 15, fontWeight: 700, color: c.peri, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>$200–$460</span>
                 </div>
               </div>
-              <TryButton to="/demo/inbound" note={d.cta} />
+              <TryButton to="/demo/inbound/" note={d.cta} />
             </div>
           </Reveal>
 
@@ -146,36 +145,31 @@ export default function Demos() {
                   ))}
                 </div>
               </div>
-              <TryButton to="/demo/operations" note={d.cta} />
+              <TryButton to="/demo/operations/" note={d.cta} />
             </div>
           </Reveal>
 
           <Reveal>
-            <div style={{ ...cardStyle, border: "1px dashed rgba(124,77,204,0.3)", background: "#100B1F" }}>
+            <div style={cardStyle} onMouseEnter={(e) => cardHover(e, true)} onMouseLeave={(e) => cardHover(e, false)}>
               {tagRow("03", d.outbound.tag, c.peri)}
-              <h3 style={{ ...cardTitle, color: c.textSoft }}>{d.outbound.title}</h3>
-              <p style={{ ...cardBody, color: "#807A96" }}>{d.outbound.body}</p>
-              <div style={{ ...mockPanel, border: "1px solid rgba(124,77,204,0.14)", background: "#0C081A" }}>
+              <h3 style={cardTitle}>{d.outbound.title}</h3>
+              <p style={cardBody}>{d.outbound.body}</p>
+              <div style={mockPanel}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, paddingBottom: 2 }}>
-                  <span style={{ ...chipLabel, color: "#615C78" }}>{d.outbound.panelLabel}</span>
-                  <span style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.08em", color: "#615C78", fontVariantNumeric: "tabular-nums" }}>{d.outbound.count}</span>
+                  <span style={chipLabel}>{d.outbound.panelLabel}</span>
+                  <span style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.08em", color: c.peri, fontVariantNumeric: "tabular-nums" }}>{d.outbound.count}</span>
                 </div>
                 {d.outbound.rows.map((r, i) => (
                   <div key={r.when}>
                     {i > 0 && <div style={{ height: 1, background: "rgba(124,77,204,0.12)", marginBottom: 10 }} />}
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr auto", alignItems: "center", gap: 10, fontSize: 13, color: "#8A84A2" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr auto", alignItems: "center", gap: 10, fontSize: 13, color: c.text }}>
                       <span>{r.when}</span>
-                      <span style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.08em", fontVariantNumeric: "tabular-nums" }}>{r.spend}</span>
+                      <span style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.08em", fontVariantNumeric: "tabular-nums", color: "#8A84A2" }}>{r.spend}</span>
                     </div>
                   </div>
                 ))}
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", paddingTop: 4 }}>
-                <span aria-disabled="true" style={{ display: "inline-flex", alignItems: "center", gap: 9, border: "1px solid rgba(124,77,204,0.28)", color: c.faintest, fontSize: 15, fontWeight: 600, padding: "12px 21px", borderRadius: 10, cursor: "not-allowed" }}>
-                  {d.outbound.cta}
-                </span>
-                <span style={{ ...chipLabel, letterSpacing: "0.1em", color: "#615C78" }}>{d.outbound.note}</span>
-              </div>
+              <TryButton to="/demo/outbound/" note={d.cta} />
             </div>
           </Reveal>
         </div>
