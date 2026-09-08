@@ -46,7 +46,7 @@ export default function Problem() {
             <Counter
               value={stat.value}
               suffix={stat.suffix}
-              style={{ fontFamily: display, fontSize: "clamp(30px,3vw,38px)", fontWeight: 700, letterSpacing: "-0.03em", color: i === 2 ? c.peri : c.violetLight, lineHeight: 1, marginBottom: 10 }}
+              style={{ fontFamily: display, fontSize: "clamp(30px,3vw,38px)", fontWeight: 800, letterSpacing: "-0.03em", color: i === 2 ? c.peri : c.violetLight, lineHeight: 1, marginBottom: 10 }}
             />
             <div style={{ fontSize: 14, color: c.muted, lineHeight: 1.5 }}>{stat.label}</div>
           </div>

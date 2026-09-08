@@ -27,7 +27,7 @@ const tagRow = (num: string, tag: string, accent: string) => (
   </div>
 );
 
-const cardTitle: React.CSSProperties = { fontFamily: display, fontSize: 24, lineHeight: 1.15, letterSpacing: "-0.02em", fontWeight: 700, margin: 0 };
+const cardTitle: React.CSSProperties = { fontFamily: display, fontSize: 24, lineHeight: 1.15, letterSpacing: "-0.02em", fontWeight: 800, margin: 0 };
 const cardBody: React.CSSProperties = { fontSize: 16, lineHeight: 1.6, color: c.muted, margin: 0 };
 const panel: React.CSSProperties = { border: "1px solid rgba(124,77,204,0.16)", borderRadius: 11, background: c.inner, padding: 16 };
 

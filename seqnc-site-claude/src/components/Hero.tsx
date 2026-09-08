@@ -55,7 +55,7 @@ export default function Hero() {
             <span style={{ width: 26, height: 1, background: c.violet, display: "block" }} />
             {t.hero.label}
           </div>
-          <h1 style={{ fontFamily: display, fontSize: "clamp(38px,5.6vw,74px)", lineHeight: 0.99, letterSpacing: "-0.035em", fontWeight: 700, margin: "0 0 24px", textWrap: "balance" as never }}>
+          <h1 style={{ fontFamily: display, fontSize: "clamp(38px,5.6vw,74px)", lineHeight: 0.99, letterSpacing: "-0.035em", fontWeight: 800, margin: "0 0 24px", textWrap: "balance" as never }}>
             {t.hero.titleStart} <span style={{ color: "#8F86A8" }}>{t.hero.titleMuted}</span>
           </h1>
           <p style={{ fontSize: "clamp(17px,1.3vw,19px)", lineHeight: 1.6, color: c.muted, maxWidth: "31em", margin: "0 0 36px", textWrap: "pretty" as never }}>{t.hero.body}</p>

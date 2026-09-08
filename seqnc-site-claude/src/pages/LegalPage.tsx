@@ -39,7 +39,7 @@ export default function LegalPage({ title, sections, current }: { title: string;
           {t.legal.backToHome}
         </Link>
 
-        <h1 style={{ fontFamily: display, fontSize: "clamp(34px,4.6vw,54px)", lineHeight: 1.02, letterSpacing: "-0.035em", fontWeight: 700, margin: "0 0 12px" }}>{title}</h1>
+        <h1 style={{ fontFamily: display, fontSize: "clamp(34px,4.6vw,54px)", lineHeight: 1.02, letterSpacing: "-0.035em", fontWeight: 800, margin: "0 0 12px" }}>{title}</h1>
         <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: c.faint, paddingBottom: 38, borderBottom: "1px solid rgba(124,77,204,0.2)" }}>{t.legal.lastUpdated}</div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 44, paddingTop: 44 }}>

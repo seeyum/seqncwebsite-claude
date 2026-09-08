@@ -29,7 +29,7 @@ const tagRow = (num: string, tag: string, accent: string) => (
   </div>
 );
 
-const cardTitle: React.CSSProperties = { fontFamily: display, fontSize: 24, lineHeight: 1.15, letterSpacing: "-0.02em", fontWeight: 700, margin: 0 };
+const cardTitle: React.CSSProperties = { fontFamily: display, fontSize: 24, lineHeight: 1.15, letterSpacing: "-0.02em", fontWeight: 800, margin: 0 };
 const cardBody: React.CSSProperties = { fontSize: 16, lineHeight: 1.6, color: c.muted, margin: 0 };
 const mockPanel: React.CSSProperties = {
   border: "1px solid rgba(124,77,204,0.16)",
@@ -114,7 +114,7 @@ export default function Demos() {
                 ))}
                 <div data-mock="in" style={{ ...cycleIn(3), display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, border: "1px solid rgba(126,154,245,0.45)", borderRadius: 9, background: "rgba(126,154,245,0.1)", padding: "12px 13px", marginTop: 3 }}>
                   <span style={{ fontSize: 13, color: c.text, fontWeight: 500 }}>{d.inbound.result}</span>
-                  <span style={{ fontFamily: display, fontSize: 15, fontWeight: 700, color: c.peri, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>$200–$460</span>
+                  <span style={{ fontFamily: display, fontSize: 15, fontWeight: 800, color: c.peri, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>$200–$460</span>
                 </div>
               </div>
               <TryButton to="/demo/inbound/" note={d.cta} />

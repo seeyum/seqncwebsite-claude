@@ -16,8 +16,9 @@ export const c = {
   line: "rgba(124,77,204,0.18)",
 };
 
-export const display = "'Plus Jakarta Sans', sans-serif";
+export const display = "'Manrope', sans-serif";
 export const mono = "'Azeret Mono', monospace";
+export const body = "'Manrope', sans-serif";
 
 export const label: React.CSSProperties = {
   fontFamily: mono,
@@ -33,7 +34,7 @@ export const h2: React.CSSProperties = {
   fontSize: "clamp(30px,3.6vw,46px)",
   lineHeight: 1.05,
   letterSpacing: "-0.03em",
-  fontWeight: 700,
+  fontWeight: 800,
   margin: "0 0 18px",
   textWrap: "balance" as never,
 };

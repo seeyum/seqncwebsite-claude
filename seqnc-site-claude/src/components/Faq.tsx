@@ -12,7 +12,7 @@ export default function Faq() {
       <div style={{ maxWidth: 1000, margin: "0 auto", padding: "clamp(72px,8vw,120px) 32px" }}>
         <Reveal fade style={{ marginBottom: "clamp(32px,4vw,48px)" }}>
           <div style={label}>{t.faq.label}</div>
-          <h2 style={{ fontFamily: display, fontSize: "clamp(30px,3.6vw,44px)", lineHeight: 1.05, letterSpacing: "-0.03em", fontWeight: 700, margin: 0 }}>{t.faq.title}</h2>
+          <h2 style={{ fontFamily: display, fontSize: "clamp(30px,3.6vw,44px)", lineHeight: 1.05, letterSpacing: "-0.03em", fontWeight: 800, margin: 0 }}>{t.faq.title}</h2>
         </Reveal>
         <Reveal fade style={{ borderTop: "1px solid " + c.line }}>
           {t.faq.items.map((item, i) => {
