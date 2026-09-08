@@ -1,0 +1,317 @@
+================================================================================
+SEQNC AUTOMATIONS — SITE REFERENCE DOC
+================================================================================
+Last updated: 2026-09-07
+Repo: seeyum/seqncwebsite-claude  ·  branch: main  ·  path: seqnc-site-claude/
+Stack: React + TypeScript + Vite. All styling is inline (no CSS framework,
+no stylesheet for the marketing site). Bilingual EN/FR via a language context.
+
+HOW TO USE THIS FILE
+  This is the single reference for the site's structure, colour system, type,
+  copy, and demo apps. Section 8 is a dated changelog — every change made to
+  the site gets a dated entry there.
+
+================================================================================
+1. FILE MAP
+================================================================================
+seqnc-site/
+  index.html                    Vite entry, fonts, favicon
+  package.json                  deps + scripts (dev / build / preview)
+  vercel.json                   SPA rewrite: /(.*) -> /index.html
+  public/_redirects             Netlify equivalent of the same rewrite
+  public/di*                    favicon / og assets
+  public/demo/inbound/          Demo 01 — static app (4 files)
+  public/demo/operations/       Demo 02 — static app (5 files)
+  public/demo/outbound/         Demo 03 — static app (5 files)
+  src/theme.ts                  COLOUR + TYPE TOKENS (single source of truth)
+  src/pages/Index.tsx           Homepage — composes all sections in order
+  src/pages/LegalPage.tsx       Shared shell for the two legal pages
+  src/pages/PrivacyPolicy.tsx   Privacy policy
+  src/pages/TermsAndConditions.tsx  Terms
+  src/i18n/en.ts                ALL ENGLISH COPY
+  src/i18n/fr.ts                ALL FRENCH COPY (mirrors en.ts shape)
+  src/i18n/LanguageContext.tsx  Language provider + useLanguage() hook
+  src/components/               One file per homepage section (see section 3)
+  src/assets/                   Logo + image assets
+
+Rule: no copy is hardcoded in components. Every string lives in en.ts / fr.ts
+and is read through useLanguage(). If you add copy, add it to BOTH files.
+
+================================================================================
+2. COLOUR SCHEME  (src/theme.ts)
+================================================================================
+Dark violet/indigo palette. Two accents only: violet (primary) and
+periwinkle (secondary, used for "the payoff" / final states).
+
+BACKGROUNDS
+  bg          #0E0820   page background
+  bgAlt       #0B0619   alternating / darker band
+  card        #140E24   card surface
+  cardAlt     #171029   raised card surface
+  inner       #0F0A1E   inset panel inside a card (mock UI panels)
+
+TEXT
+  text        #EFEAF9   primary body + headings
+  textSoft    #C9C3DC   secondary text
+  muted       #9B95B4   body copy in cards
+  faint       #7E7898   labels, meta, captions
+  faintest    #7E7898   (same value; kept for semantic naming)
+
+ACCENTS
+  violet        #7C4DCC   primary — buttons, dots, rules, tag numbers
+  violetLight   #A87BE8   section eyebrow labels, FAQ +/-, stat numbers
+  violetBright  #AE6BEC   hover/active accent, hex grid lines
+  peri          #7E9AF5   secondary accent — final step, outbound tag,
+                          "instantly" pulse, third stat
+  line          rgba(124,77,204,0.18)   default hairline border
+
+BUTTON HOVER
+  #8F5CE0  (violet buttons lighten on hover)
+
+CARD HOVER
+  border  -> rgba(174,107,236,0.5)
+  transform -> translateY(-4px)
+  background -> #181031
+
+TEXTURE
+  hexGrid — two crossed repeating-linear-gradients at +/-60deg,
+  rgba(174,107,236,0.04), 64px pitch. Used as a faint background weave.
+
+DEMO APPS use their own light/neutral palettes (they represent a client's
+product, not the Seqnc brand). The only brand tie-in is the "Back to Seqnc"
+link in each demo header.
+
+================================================================================
+3. TYPOGRAPHY
+================================================================================
+ONE TYPEFACE, TWO ROLES — Manrope.
+display  'Manrope', sans-serif  ·  weight 800   wordmark, headlines, stat
+                                                numbers, card titles, prices
+body     'Manrope', sans-serif  ·  weight 500   all body copy, set globally on
+                                                <body> in index.html
+mono     'Azeret Mono', monospace              eyebrow labels, badges, tags
+                                                (retained as a system accent)
+Tracking: tight on display (-0.02em to -0.035em), neutral on body.
+Loaded from Google Fonts in index.html: Manrope 500/600/700/800 + Azeret Mono
+400/500. Plus Jakarta Sans and DM Sans have been removed entirely.
+
+SHARED TYPE STYLES (theme.ts)
+  label   mono · 11px · letter-spacing 0.16em · UPPERCASE · violetLight
+          -> every section eyebrow ("The problem", "Live demos", ...)
+  h2      display · clamp(30px, 3.6vw, 46px) · line-height 1.05
+          letter-spacing -0.03em · weight 700 · text-wrap balance
+          -> every section headline
+  card title   display · 24px · -0.02em · 700
+  card body    16px · 1.6 · muted
+  chip/badge   mono · 11px · 0.12em–0.16em · UPPERCASE
+  numerals     font-variant-numeric: tabular-nums everywhere numbers align
+
+================================================================================
+4. PAGE STRUCTURE — HOMEPAGE
+================================================================================
+Order is set in src/pages/Index.tsx. A skip-to-content link sits above the
+navbar for keyboard users. Sections reveal on scroll via <Reveal> (opacity +
+translateY(26px), staggered with a delay prop).
+
+  1. Navbar        Logo, anchor nav (Problem / Systems / How It Works /
+                   Pricing), EN-FR toggle, "Free review" CTA.
+  2. Hero          Eyebrow "The TimeBack Method™" -> headline in two parts
+                   (bright line + muted line) -> body -> CTA + note.
+                   Right side: "Where the week goes" leak chart — 3 rows of
+                   task + hours, with an illustrative-data footnote.
+  3. WhoStrip      Thin horizontal band. Eyebrow + one-line statement +
+                   4 audience chips, laid out flex / space-between.
+  4. Problem       Eyebrow, headline, body, 3 pain bullets, then a 3-up
+                   benchmark stat row (animated counters, third stat in peri)
+                   with a research disclaimer underneath.
+  5. Systems       "Three Systems" — 3-column card grid. Each card:
+                   number tag + system tag, title, body, a small diagram,
+                   then 3 dash-bulleted outcomes.
+                   01 Inbound   — 3 channel chips -> arrow -> reply row with
+                                  pulsing "Instantly" badge
+                   02 Operations— 4-step vertical timeline with badges
+                   03 Outbound  — 4-row sequence table (day / message / state)
+  6. CaseStudy     Divos Detailing. Before/After split panels, 3 capability
+                   chips, live link, and a dashed "second case study in
+                   progress" note with a pulsing dot.
+  7. Demos         3-column grid, one card per demo. Each card: number tag,
+                   title, body, an animated mock panel, then a violet
+                   "Try me" button + a mono note. All three now link out to
+                   the live static demos in /public/demo/.
+                   01 -> /demo/inbound/    02 -> /demo/operations/
+                   03 -> /demo/outbound/
+  8. Process       "The TimeBack Method, start to finish" — 4 numbered steps
+                   on a connecting line. Hovered step brightens; the final
+                   step uses peri instead of violet.
+  9. Pricing       Eyebrow, headline, body explaining why no price list, then
+                   3 stacked explainer items (setup + retainer, cancel any
+                   time, 90-day guarantee) and a CTA.
+ 10. Faq           8 accordion items. Grid-template-rows 1fr/0fr transition,
+                   mono +/- indicator in violetLight.
+ 11. ClosingCta    Final push: headline, body, CTA, reassurance note.
+ 12. Footer        Tagline, Privacy Policy, Terms & Conditions links.
+
+LEGAL PAGES
+  /privacy-policy and /terms use LegalPage.tsx: max-width 900px, back-to-home
+  link with a short violet rule, "Last updated" line, then headed sections of
+  paragraphs and lists. Copy lives in en.ts/fr.ts under legal.privacy and
+  legal.terms.
+
+ALL CTAs point to: https://calendly.com/seqnc/free-review  (theme.ts CALENDLY)
+
+================================================================================
+5. COPY — KEY LINES
+================================================================================
+Full copy is in src/i18n/en.ts. The lines that define the voice:
+
+HERO
+  Label:   The TimeBack Method™
+  Title:   Your Business Should Run / Without You Running It.
+  Body:    We find where your service business is losing time and money. The
+           after-hours call nobody answered. The quote that died in a text
+           thread. The invoice nobody chased. Then we build the systems that
+           close those leaks, live in two to four weeks.
+  CTA:     Book the free review
+  Note:    60 minutes. You leave knowing your 2 to 3 biggest leaks, whether
+           you hire us or not.
+
+WHO IT'S FOR
+  Service based businesses with 2 to 20 employees.
+  Chips: Home Services · Trades & Contracting · Agencies ·
+         Professional Services
+
+PROBLEM
+  You Built a Great Business. Now It's Running You.
+
+BENCHMARK STATS
+  78% of customers buy from whoever responds first
+  63% of businesses never respond to inbound leads at all
+  30% of work time lost weekly to repetitive tasks
+
+SYSTEMS
+  Three Systems. We Start With Whichever One Is Costing You Most.
+  01 Inbound     — Never Miss a Lead
+  02 Operations  — Nothing Gets Dropped
+  03 Outbound    — Go Back to the Clients You Already Have
+
+DEMOS
+  Don't Take My Word for It. Run the Systems Yourself.
+  Real systems with sample data. No signup, nothing to install.
+  01 Quoted and Booked in Under Two Minutes
+  02 Walk Through the Client Portal
+  03 Win Back the Clients Who Went Quiet
+
+PROCESS
+  1 We Find What's Costing You Most
+  2 You See the Build and the Cost
+  3 We Build It
+  4 It Keeps Working
+
+PRICING
+  Every Build Is Scoped to Your Business.
+  One-time setup fee + monthly retainer · Cancel any time, no penalty ·
+  90-day money-back guarantee on the retainer (setup fees excluded)
+
+CLOSING
+  The Longer You Wait, the More It Costs You.
+
+FOOTER
+  Seqnc Automations / The TimeBack Method™ · Founded in Montreal
+
+VOICE NOTES
+  Plain, direct, second person. Short declaratives. Concrete failure examples
+  over abstractions. No hype adjectives, no emoji. Numbers are always
+  attributed as industry benchmarks, never as client results.
+
+================================================================================
+6. LIVE DEMOS
+================================================================================
+Each demo is a standalone static app in public/demo/. No build step, no
+framework — plain HTML + CSS + vanilla JS, so they ship as-is and are served
+directly by the host. Every demo header carries a "Back to Seqnc" link to
+/#demos.
+
+01 INBOUND — public/demo/inbound/
+   Tab title: Job Estimator - Inbound Demo
+   Files: index.html, styles.css, demo.js, demo-data.js
+   What it does: 5-question tap-only questionnaire for an HVAC job. The
+   customer picks symptoms; the app returns a price range and an open
+   appointment slot at the end.
+
+02 OPERATIONS — public/demo/operations/
+   Tab title: Client Portal - Operations Demo
+   Files: index.html, styles.css, data.js, charts.js, app.js
+   What it does: login -> role-based views. Internal dashboard with charts
+   plus the client-facing portal, where onboarding steps tick off and the
+   file advances on its own. Includes a "Reset demo data" control.
+
+03 OUTBOUND — public/demo/outbound/
+   Tab title: Client Win Back - Outbound Demo
+   Files: index.html, styles.css, data.js, engine.js, app.js
+   What it does: pulls dormant clients (no booking in 6+ months), ranks them
+   by last spend, and matches each to a win-back offer. Flags clients who
+   need re-consent before emailing (CASL).
+
+DEPLOY NOTE: the SPA rewrite in vercel.json / _redirects sends unknown paths
+to index.html. Static files under /demo/ are served before the rewrite
+applies, so the demos load correctly — do not remove the trailing slash in
+the demo URLs.
+
+================================================================================
+7. CONVENTIONS TO FOLLOW WHEN EDITING
+================================================================================
+- Colours: use tokens from theme.ts. Do not introduce a new hex without
+  adding it to theme.ts and recording it in section 2 of this file.
+- Copy: edit en.ts AND fr.ts. Never hardcode a string in a component.
+- New homepage section: build it as its own component file, import it into
+  Index.tsx in position, wrap blocks in <Reveal>, use the shared label/h2
+  styles so the rhythm holds.
+- Numbers in UI: tabular-nums.
+- Demos are static and self-contained. Keep them dependency-free.
+- Update section 8 with a dated entry for every change.
+
+================================================================================
+8. CHANGELOG
+================================================================================
+
+2026-09-07
+  - Typography switched to the brand standard: Manrope replaces Plus Jakarta
+    Sans (display) and DM Sans (body). Both old families removed.
+      display  Manrope 800 — wordmark, all headlines, stat numbers, card
+               titles, price figures. Every fontWeight: 700 paired with the
+               display token was bumped to 800.
+      body     Manrope 500 — set globally on <body> via a base style block in
+               index.html.
+      mono     Azeret Mono kept for eyebrow labels, badges and tags.
+    Touched: index.html (font link + base style), src/theme.ts (display token,
+    new body token, h2 weight), and the components carrying display headings
+    (Hero, Problem, Systems, CaseStudy, Demos, Faq, ClosingCta, LegalPage).
+  - Same swap applied to the homepage and legal design files.
+
+2026-08-28
+  - Added the Operations demo at public/demo/operations/ (index.html,
+    styles.css, data.js, charts.js, app.js).
+  - Added the Outbound demo at public/demo/outbound/ (index.html, styles.css,
+    data.js, engine.js, app.js).
+  - Added a "Back to Seqnc" link to both new demos (Operations: sidebar foot
+    and login card; Outbound: site header, with .back-link styles).
+  - Demos.tsx: cards 02 and 03 no longer read "Coming soon / In build". Both
+    now use the standard card styling with hover, and a violet "Try me"
+    button linking to their demo, with a "Sample data" note.
+  - Applied the revised Outbound demo build supplied by the client.
+  - Tab titles corrected:
+      operations  "Greyhouse Ops — Demo"     -> "Client Portal - Operations Demo"
+      outbound    "Client Win-Back - Outbound" -> "Client Win Back - Outbound Demo"
+      inbound     unchanged ("Job Estimator - Inbound Demo")
+  - Created this reference doc (REFERENCE.txt).
+  - Known leftover: demos.outbound.cta ("Coming soon") and
+    demos.outbound.note ("In build") in en.ts / fr.ts are now unused and can
+    be deleted.
+
+EARLIER
+  - Added the Inbound demo at public/demo/inbound/ and wired demo card 01 to
+    it (Try me button changed to a plain anchor so the static page loads).
+  - Homepage built out: Navbar, Hero + leak chart, WhoStrip, Problem +
+    benchmark counters, Systems, Divos Detailing case study, Demos, Process,
+    Pricing, FAQ, Closing CTA, Footer.
+  - Bilingual EN/FR copy layer, privacy policy and terms pages.
